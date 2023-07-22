@@ -1,26 +1,17 @@
 <template>
-    <q-form class="form"
-            @submit="handleCreate">
-        <q-input v-model="input" outlined label="InputValue: "/>
-        <div>
-            <q-btn label="Create" type="submit"/>
-        </div>
-    </q-form>
+  <TodoForm @submit="handleCreate" button-label="Create" />
 </template>
 <script>
 import { defineComponent } from 'vue'
+import TodoForm from "components/TodoForm.vue";
 
 export default defineComponent({
     name: "TodoCreateForm",
+    components: {TodoForm},
     emits:['submit'],
-    data(){
-        return{
-            input: '',
-        };
-    },
     methods:{
-        handleCreate(){
-            this.$emit('submit', this.input)
+        handleCreate(name){
+            this.$emit('submit', name)
         }
     }
 })
